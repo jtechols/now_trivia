@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Now Trivia</title>
+    </head>
+    <body>
+        <div id="new-game-header">
+            <h1>Play a new Game</h1>
+        </div>
+        <div id="create-game">
+            <form method="post" action="">
+                {% csrf_token %}
+                Number of questions:
+                {{ form.rounds }}
+                Show song title?
+                {{ form.show_title }}
+                Show artist name? 
+                {{ form.show_artist }}
+                <input type="submit" value="Start Game">
+            </form>
+        </div>
+    </body>
+</html>

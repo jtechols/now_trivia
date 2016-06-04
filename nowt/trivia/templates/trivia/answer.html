@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>answer</title>
+    </head>
+    <body>
+        <div id="correct">
+            {% if correct_answer %}
+                <h1 color="green">Correct</h1>
+            {% else %}
+                <h1 color="red">Incorrect</h1>
+            {% endif %}
+        </div>
+        <div id="info-box">
+            <p>The song {{ song.song_name }} was recorded by {{ song.artist }} and appeared on the album {{ song.album }} released in the {{ song.album.pub_season }} of {{ song.album.pub_year }}.</p>
+            <img id="album-cover" src="">
+        </div>
+        <div id="next-question">
+            {% if not last_question %}
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="submit" value="Next Question">
+                </form>
+            {% else %}
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="submit" value="Results">
+                </form>
+        </div>
+    </body>
+</html>

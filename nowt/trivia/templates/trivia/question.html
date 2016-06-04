@@ -1,0 +1,47 @@
+<html>    
+    <head>
+        <title>Now that's what I call trivia</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1 id="question-number"> Question number: {{ game.current_round }} </h1>
+        </div>
+        <div id="question text">
+            <p> Which "Now That's What I Call Music" album did the following song appear on? </p>
+        </div>
+        <div id="song">
+            <ul id="song-info">
+                {% if game.show_title %}
+                    <li>Title: {{ song.song_name }}</li>
+                {% endif %}
+                {% if game.show_artist %}
+                    <li>Artist: {{ song.artist }}</li>
+                {% endif %}
+                <li>
+                    <audio controls="controls" preload="auto" autoplay="autoplay"> 
+                        <source src="https://s3-us-west-1.amazonaws.com/nowtrivia/media/{{ song.file_name }}"/>
+                            Your Browser does not support audio
+                    </audio>
+                </li>
+            </ul>
+        </div>
+        <div id="choices">
+            <ul id="choice-list">
+                {% for choice in choice_list %}
+                    <li>
+                        <form method="post" action="/trivia/{{ song.id }}/{{ choice }}">
+                            <input type="submit" value="{{ choice }}">
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="game-info">
+            <ul id="game-list">
+                <li>Question {{ game.current_round }} of {{ game.rounds }}</li>
+                <li>{{ game.correct }} questions answered correctly</li>
+                <li>{{ correct_percentage }}% correct</li>
+            </ul>
+        </div>
+    </body>
+</html>
